@@ -1,0 +1,13 @@
+package HotelReservation;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        PriceCalculator priceCalculator = new PriceCalculator();
+        priceCalculator.run(scanner);
+
+    }
+}
