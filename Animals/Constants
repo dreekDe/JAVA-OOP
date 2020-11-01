@@ -1,0 +1,15 @@
+package animals;
+
+public final class Constants {
+
+    public final static String FEMALE_GENDER = "Female";
+    public final static String MALE_GENDER = "Male";
+
+    public final static String CAT_SOUNDS = "Meow meow";
+    public final static String TOMCAT_SOUNDS = "MEOW";
+    public final static String KITTEN_SOUNDS = "Meow";
+    public final static String DOG_SOUNDS = "Woof!";
+    public final static String FROG_SOUNDS = "Ribbit";
+
+
+}
