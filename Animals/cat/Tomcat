@@ -1,0 +1,15 @@
+package animals.cat;
+
+import static animals.Constants.*;
+
+public class Tomcat extends Cat{
+
+    public Tomcat(String name, int age) {
+        super(name, age, MALE_GENDER);
+    }
+
+    @Override
+    public String produceSound() {
+        return TOMCAT_SOUNDS;
+    }
+}
