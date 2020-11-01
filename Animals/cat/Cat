@@ -1,0 +1,16 @@
+package animals.cat;
+
+import animals.Animal;
+
+import static animals.Constants.CAT_SOUNDS;
+
+public  class Cat extends Animal {
+    public Cat(String name, int age, String gender) {
+        super(name, age, gender);
+    }
+
+    @Override
+    public String produceSound() {
+        return CAT_SOUNDS;
+    }
+}
