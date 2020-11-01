@@ -1,0 +1,23 @@
+package restaurant.food.dessert;
+
+import restaurant.food.Food;
+
+import java.math.BigDecimal;
+
+public abstract class Dessert extends Food {
+    private double calories;
+
+    public Dessert(String name, BigDecimal price, double grams) {
+        super(name, price, grams);
+        this.setCalories(calories);
+
+    }
+
+    public double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+}
