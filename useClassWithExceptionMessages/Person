@@ -1,0 +1,72 @@
+package Person;
+
+import static Person.common.ExceptionMessages.*;
+
+public class Person {
+    private String firstName;
+    private String lastName;
+    private int age;
+    private double salary;
+
+    public Person(String firstName, String lastName, int age, double salary) {
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setAge(age);
+        this.setSalary(salary);
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+    public void setFirstName(String firstName) {
+        if (firstName.length() < 3) {
+            throw new IllegalStateException(INVALID_FIRST_NAME);
+        }
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+    public void setLastName(String lastName) {
+        if (lastName.length() < 3) {
+            throw new IllegalStateException(INVALID_LAST_NAME);
+        }
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        if (age <= 0) {
+            throw new IllegalStateException(INVALID_AGE);
+        }
+        this.age = age;
+    }
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        if (salary < 460) {
+            throw new IllegalStateException(INVALID_SALARY);
+        }
+        this.salary = salary;
+    }
+
+    public void increaseSalary(double persentage) {
+        if (this.getAge() < 30) {
+            this.setSalary(this.getSalary() + (this.getSalary() * persentage / 200));
+        } else {
+            this.setSalary(this.getSalary() + (this.getSalary() * persentage / 100));
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s gets %s leva.", this.getFirstName(), this.getLastName(), this.getSalary());
+    }
+}
