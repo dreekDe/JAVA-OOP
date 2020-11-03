@@ -1,0 +1,9 @@
+package Person.common;
+
+public class ExceptionMessages {
+
+    public static final String INVALID_SALARY = "Salary cannot be less than 460 leva";
+    public static final String INVALID_FIRST_NAME = "First name cannot be less than 3 symbols";
+    public static final String INVALID_LAST_NAME = "Last name cannot be less than 3 symbols";
+    public static final String INVALID_AGE = "Age cannot be zero or negative integer";
+}
