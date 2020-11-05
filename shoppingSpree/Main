@@ -1,0 +1,50 @@
+package shoppingSpree;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        List<String> peoplesInput = Arrays.stream(reader.readLine().split(";")).collect(Collectors.toList());
+
+        Map<String, Person> people = new LinkedHashMap<>();
+
+        for (String p : peoplesInput) {
+            String[] tokens = p.split("=");
+            people.putIfAbsent(tokens[0], new Person(tokens[0], Integer.parseInt(tokens[1])));
+        }
+
+        List<String> initialProducts = Arrays.stream(reader.readLine().split(";")).collect(Collectors.toList());
+
+        Map<String, Product> products = new LinkedHashMap<>();
+
+        for (String initialProduct : initialProducts) {
+            String[] tokens = initialProduct.split("=");
+            products.putIfAbsent(tokens[0], new Product(tokens[0], Integer.parseInt(tokens[1])));
+        }
+
+        String input;
+
+        while (!"END".equals(input = reader.readLine())) {
+            String[] currentCommand = input.split("\\s+");
+            String personName = currentCommand[0];
+            String personProduct = currentCommand[1];
+
+            try {
+                people.get(personName).buyProduct(products.get(personProduct));
+                    System.out.printf("%s bought %s%n", personName, personProduct);
+
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        for (Person per : people.values()) {
+            System.out.println(per);
+        }
+    }
+}
