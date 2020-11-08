@@ -1,0 +1,39 @@
+package footboll;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Map<String, Team> teams = new HashMap<>();
+
+        String input = scanner.nextLine();
+        while (!"END".equals(input)) {
+            String[] tokens = input.split(";");
+
+            try {
+
+                if ("Team".equals(tokens[0])) {
+                    Team team = new Team(tokens[1]);
+                    teams.putIfAbsent(tokens[1], team);
+                } else if ("Add".equals(tokens[0])) {
+                    Validation.teamExist(teams, tokens[1]);
+                    teams.get(tokens[1]).addPlayer(new Player(tokens[2], Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4]),
+                            Integer.parseInt(tokens[5]), Integer.parseInt(tokens[6]), Integer.parseInt(tokens[7])));
+                } else if ("Remove".equals(tokens[0])) {
+                    Validation.teamExist(teams, tokens[1]);
+                    teams.get(tokens[1]).removePlayer(tokens[2]);
+
+                } else if ("Rating".equals(tokens[0])) {
+                    Validation.teamExist(teams, tokens[1]);
+                    System.out.printf("%s - %.0f%n", tokens[1],teams.get(tokens[1]).getRating());
+                }
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            input = scanner.nextLine();
+        }
+    }
+}
