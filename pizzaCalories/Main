@@ -1,0 +1,42 @@
+package pizzaCalories;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] tokens = scanner.nextLine().split("\\s+");
+        try {
+            String pizzaName = tokens[1];
+            int toppingCount = Integer.parseInt(tokens[2]);
+
+            Pizza pizza = new Pizza(pizzaName, toppingCount);
+
+            tokens = scanner.nextLine().split("\\s+");
+            String flourType = tokens[1];
+            String backingTechnique = tokens[2];
+            double weigh = Double.parseDouble(tokens[3]);
+
+            Dough dough = new Dough(flourType, backingTechnique, weigh);
+            pizza.setDough(dough);
+
+           String input = scanner.nextLine();
+            while (!"END".equals(input)) {
+                tokens = input.split("\\s+");
+                String toppingType = tokens[1];
+                weigh = Double.parseDouble(tokens[2]);
+
+                Topping topping = new Topping(toppingType, weigh);
+                pizza.addTopping(topping);
+
+                input = scanner.nextLine();
+            }
+
+            System.out.println(pizza.toString());
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
