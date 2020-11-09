@@ -1,0 +1,47 @@
+package pizzaCalories;
+
+import java.util.Map;
+
+public class Topping {
+
+    private static final Map<String, Double> TOPPING_TYPES_WITH_MODIFIERS =
+            Map.of("Meat", 1.2,
+                    "Veggies", 0.8,
+                    "Cheese", 1.1,
+                    "Sauce", 0.9);
+
+
+    private String toppingType;
+    private double weight;
+
+    public Topping(String toppingType, double weight) {
+        this.setToppingType(toppingType);
+        this.setWeight(weight);
+    }
+
+    private void setToppingType(String type) {
+        validationToppingType(type);
+        this.toppingType = type;
+    }
+
+    private void setWeight(double weight) {
+        validationToppingWeight(weight, this.toppingType);
+        this.weight = weight;
+    }
+
+    public double calculateCalories() {
+        return this.weight * 2 * TOPPING_TYPES_WITH_MODIFIERS.get(this.toppingType);
+    }
+
+    private static void validationToppingType(String type) {
+        if (!Topping.TOPPING_TYPES_WITH_MODIFIERS.containsKey(type)) {
+            throw new IllegalArgumentException("Cannot place " + type + " on top of your pizza.");
+        }
+    }
+
+    private static void validationToppingWeight(double weight, String predicate) {
+        if (weight < 1 || weight > 50) {
+            throw new IllegalArgumentException(predicate + " weight should be in the range [1..50].");
+        }
+    }
+}
